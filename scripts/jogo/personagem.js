@@ -29,7 +29,7 @@ class Personagem {
   }
   
   exibir() {
-    var multiplicadorTamanhoPersonagem = 1.5;
+    var multiplicadorTamanhoPersonagem = 0.23;
     var alturaPersonagem = sizeOfSpriteY/multiplicadorTamanhoPersonagem;
     var larguraPersonagem = sizeOfSpriteX/multiplicadorTamanhoPersonagem;
     image(this.imagem,
