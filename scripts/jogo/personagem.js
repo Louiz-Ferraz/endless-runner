@@ -2,7 +2,7 @@ class Personagem {
   
   constructor(imagem,
                sizeOfSpriteX, sizeOfSpriteY,
-               numberOfSpritesX, numberOfSpritesY) {
+               numberOfSpritesX, numberOfSpritesY, tamanhoDoPersonagem) {
     this.imagem = imagem;
     
     this.matriz = [0];
@@ -28,10 +28,9 @@ class Personagem {
     this.frameAtual = 0;
   }
   
-  exibir() {
-    var multiplicadorTamanhoPersonagem = 0.23;
-    var alturaPersonagem = sizeOfSpriteY/multiplicadorTamanhoPersonagem;
-    var larguraPersonagem = sizeOfSpriteX/multiplicadorTamanhoPersonagem;
+  exibir(tamanhoDoPersonagem) {
+    var alturaPersonagem = sizeOfSpriteY*tamanhoDoPersonagem;
+    var larguraPersonagem = sizeOfSpriteX*tamanhoDoPersonagem;
     image(this.imagem,
           0, height - alturaPersonagem,
           larguraPersonagem, alturaPersonagem,
