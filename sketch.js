@@ -2,32 +2,37 @@ let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
 let somDoJogo;
+let somDoPulo;
 
 let cenario;
 let personagem;
 let inimigo;
 
-var velocidadeCenario = 10;
+const velocidadeCenario = 10;
+const velodidadePulo = 50;
 
-var posicaoXPersonagem = 50;
-var sizeOfSpriteXPersonagem = 238;
-var sizeOfSpriteYPersonagem = 405;
-var tamanhoPersonagem = 0.7;
-var numberOfSpritesXPersonagem = 3;
-var numberOfSpritesYPersonagem = 2;
+const posicaoXPersonagem = 50;
+const sizeOfSpriteXPersonagem = 238;
+const sizeOfSpriteYPersonagem = 405;
+const tamanhoPersonagem = 0.7;
+const numberOfSpritesXPersonagem = 3;
+const numberOfSpritesYPersonagem = 2;
 
-var sizeOfSpriteXInimigo = 104;
-var sizeOfSpriteYInimigo = 100;
-var tamanhoInimigo = 1.2;
-var numberOfSpritesXInimigo = 4;
-var numberOfSpritesYInimigo = 7;
+const sizeOfSpriteXInimigo = 104;
+const sizeOfSpriteYInimigo = 100;
+const tamanhoInimigo = 1.2;
+const numberOfSpritesXInimigo = 4;
+const numberOfSpritesYInimigo = 7;
+const precisaoInimigo = 0.7;
 
+var limitePulo = 0;
 
 function preload() {
   imagemCenario = loadImage('imagens/cenario/caverna.png');
   imagemPersonagem = loadImage('imagens/personagem/predator_run.png');
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
+  somDoPulo = loadSound('sons/somPulo.mp3');
 }
 
 function setup() {
@@ -47,8 +52,15 @@ function setup() {
   somDoJogo.loop();
 }
 
-function keypress() {
-  
+function keyPressed() {
+  if(key === 'ArrowUp' || key === 'Enter') {
+    if(limitePulo < 2) {
+      personagem.pular(velodidadePulo);
+      somDoPulo.play();
+      limitePulo++;
+      console.log(limitePulo);
+    }
+  }
 }
 
 function draw() {
@@ -56,7 +68,19 @@ function draw() {
   cenario.mover();
   
   personagem.exibir();
+  personagem.aplicarGravidade();
   
   inimigo.exibir();
   inimigo.mover();
+  
+  if(personagem.verificarColisao(inimigo, precisaoInimigo)) {
+    //console.log('colidiu');
+    noLoop();
+  }
+  
+  if(personagem.verificarColisaoChao(posicaoXPersonagem)) {
+    limitePulo = 0;
+    //console.log('colidiu com chão');
+  }
+  
 }
