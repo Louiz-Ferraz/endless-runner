@@ -51,7 +51,7 @@ var limitePulo = 0;
 function preload() {
   imagemCenario = loadImage('imagens/cenario/caverna.png');
   imagemPersonagem = loadImage('imagens/personagem/predator_run.png');
-  imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
+  imagemInimigo = loadImage('imagens/inimigos/gotinha2.png');
   imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
   imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png');
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
