@@ -1,7 +1,7 @@
 class Animacao {
   
   constructor(imagem,
-              posicaoX,
+              posicaoX, variacaoY,
               largura, altura,
               larguraSprite, alturaSprite,
               numberOfSpritesX, numberOfSpritesY) {
@@ -28,7 +28,8 @@ class Animacao {
     
     this.imagem = imagem;
     this.posicaoX = posicaoX;
-    this.posicaoY = height - altura;
+    this.variacaoY = variacaoY;
+    this.posicaoY = height - altura - this.variacaoY;
     this.largura = largura;
     this.altura = altura;
     this.larguraSprite = larguraSprite;
